@@ -5,8 +5,9 @@ metadata:
 data:
   ngrok.yml: |
     version: "2"
-    authtoken: "7RDktEwEunnbu6JGGsBy2_6nQyJTeZseyaeSFxsGyeF"
+    authtoken: "TOKEN"
     tunnels:
       gitea:
         proto: http
         addr: gitea-http.default.svc.cluster.local:3000
+        hostname: coherent-shrimp-nationally.ngrok-free.app

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-script
+  namespace: default
+data:
+  init-db.sql: |
+    CREATE DATABASE IF NOT EXISTS gitea;
+    GRANT ALL PRIVILEGES ON gitea.* TO 'gitea'@'%';
+    FLUSH PRIVILEGES;

@@ -68,6 +68,8 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        - name: init-script-volume
+          mountPath: /docker-entrypoint-initdb.d/
       - image: adminer
         name: adminer
         ports:
@@ -77,3 +79,6 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+      - name: init-script-volume
+        configMap:
+          name: mysql-init-script

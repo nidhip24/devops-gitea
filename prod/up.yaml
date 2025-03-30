@@ -1,18 +1,28 @@
 ---
 - hosts: localhost
   tasks:
+
+  # Install Kubernetes Python package
   - name: "Install kubernetes python package"
     pip:
       name: kubernetes
       state: present
-  - name: install mysql
+
+  # Deploy MySQL and wait until it is running
+  - name: Install MySQL
     kubernetes.core.k8s:
       state: present
       src: mysql.yaml
-  - name: Deploy latest version of gitea
+      wait: true
+      wait_timeout: 600
+
+  # Deploy Gitea using Helm
+  - name: Deploy latest version of Gitea
     kubernetes.core.helm:
       name: gitea
       chart_ref: gitea-charts/gitea
       release_namespace: default
       values_files:
-      - values.yaml
+        - values.yaml
+      wait: true
+      timeout: 600s
