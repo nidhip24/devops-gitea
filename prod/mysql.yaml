@@ -53,12 +53,15 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: mysql:8.0
         name: mysql
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              name: mysql-root-password
+              key: MYSQL_ROOT_PASSWORD
         ports:
         - containerPort: 3306
           name: mysql

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ngrok-config
+data:
+  ngrok.yml: |
+    version: "2"
+    authtoken: "7RDktEwEunnbu6JGGsBy2_6nQyJTeZseyaeSFxsGyeF"
+    tunnels:
+      gitea:
+        proto: http
+        addr: gitea-http.default.svc.cluster.local:3000
